@@ -114,13 +114,14 @@
         }
 
         nav a {
-            color: var(--color-text);
+            color: #1f2121;  /* Dark charcoal - always visible */
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-            padding-bottom: 5px;
+            padding: 0.5rem 0;
         }
+
 
         nav a::after {
             content: '';
@@ -1129,4 +1130,5 @@
             .contact-icon {
                 margin: 0 auto 0.5rem;
             }
+
         }
