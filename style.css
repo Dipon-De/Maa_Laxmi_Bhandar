@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 /* ======== CSS Variables (Your Color Palette) ======== */
-/* TODO: You can change these colors to match your brand */
 :root {
     --primary-color: #4CAF50; /* A vibrant green */
     --secondary-color: #f4f4f4; /* Light grey background */
@@ -30,6 +29,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 .container {
@@ -106,7 +106,7 @@ nav {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     z-index: 100;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, padding 0.3s ease;
 }
 
 nav .logo a {
@@ -311,11 +311,11 @@ nav .nav-links a:hover::after {
 }
 .map-container {
     flex: 1.5;
-    height: 450px;
+    height: 450px; /* This height is for desktop */
 }
 .map-container iframe {
     width: 100%;
-    height: 100%;
+    height: 100%; /* Iframe will be 100% height of its parent */
     border: 0;
     border-radius: 10px;
     box-shadow: var(--shadow);
@@ -347,15 +347,23 @@ footer p {
     margin-bottom: 0;
 }
 
-/* ======== Responsive Design ======== */
+/* ========================================
+    NEW RESPONSIVE CODE (FIXED)
+========================================
+*/
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2.5rem;
+    .container {
+        padding: 0 1rem; /* Add some padding for small screens */
+    }
+
+    h1, .hero-content h1 {
+        font-size: 2.2rem; /* Reduced for mobile */
     }
     h2 {
         font-size: 2rem;
     }
     
+    /* --- Fixed Navigation --- */
     nav {
         flex-direction: column;
         padding: 1rem;
@@ -363,23 +371,50 @@ footer p {
     nav .logo {
         margin-bottom: 0.5rem;
     }
+    nav .nav-links {
+        flex-direction: column; /* Stack links vertically */
+        width: 100%;
+        align-items: center; /* Center-align text */
+        gap: 0.5rem; /* Add space between links */
+    }
     nav .nav-links li {
-        margin: 0 0.5rem;
+        margin-left: 0; /* Remove horizontal margin */
+        width: 100%;
+        text-align: center;
     }
     nav .nav-links a {
-        font-size: 0.9rem;
+        font-size: 1rem;
+        padding: 0.5rem; /* Make links easier to tap */
+        display: block; /* Make link fill the width */
+    }
+    nav .nav-links a:hover::after {
+        width: 0; /* Disable underline effect on mobile */
+    }
+    nav .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.1); /* Add tap feedback */
+        border-radius: 4px;
     }
 
-    .about-content, .location-content {
-        flex-direction: column;
+    /* --- Fixed Section Layouts --- */
+    .about-content, 
+    .location-content {
+        flex-direction: column; /* Stack columns */
+        gap: 2rem;
     }
 
     .stats-container {
         flex-direction: column;
-        gap: 2rem;
+        gap: 2.5rem;
     }
     
+    /* --- Fixed Map Container --- */
     .map-container {
-        height: 300px;
+        width: 100%;
+        height: 350px; /* Set a specific height for the map on mobile */
     }
-          }
+    
+    .contact-info .cta-button {
+        width: 100%;
+        text-align: center; /* Make button full-width */
+    }
+}
